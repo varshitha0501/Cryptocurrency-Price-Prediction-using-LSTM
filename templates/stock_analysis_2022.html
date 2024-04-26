@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis for Year 2022</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis for Year 2022</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .chart-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .chart {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Analysis for Year 2022</h1>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Bar Chart</h2>
+        <div id="bar_chart" class="chart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">High-Low Chart</h2>
+        <div id="high_low_chart" class="chart"></div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Line Chart</h2>
+        <div id="line_chart" class="chart"></div>
+    </div>
+
+    <script>
+        // Parse Plotly JSON data for bar chart
+        var fig_bar = JSON.parse('{{ fig_bar | safe }}');
+        Plotly.newPlot('bar_chart', fig_bar.data, fig_bar.layout);
+
+        // Parse Plotly JSON data for high-low chart
+        var fig_high_low = JSON.parse('{{ fig_high_low | safe }}');
+        Plotly.newPlot('high_low_chart', fig_high_low.data, fig_high_low.layout);
+
+        // Parse Plotly JSON data for line chart
+        var fig_line = JSON.parse('{{ fig_line | safe }}');
+        Plotly.newPlot('line_chart', fig_line.data, fig_line.layout);
+    </script>
+</body>
+</html>
+
+</head>
+<body>
+    <h1>Stock Analysis for Year 2022</h1>
+
+    <div id="bar_chart"></div>
+    <div id="high_low_chart"></div>
+    <div id="line_chart"></div>
+
+    <script>
+        // Parse Plotly JSON data for bar chart
+        var fig_bar = JSON.parse('{{ fig_bar | safe }}');
+        Plotly.newPlot('bar_chart', fig_bar.data, fig_bar.layout);
+
+        // Parse Plotly JSON data for high-low chart
+        var fig_high_low = JSON.parse('{{ fig_high_low | safe }}');
+        Plotly.newPlot('high_low_chart', fig_high_low.data, fig_high_low.layout);
+
+        // Parse Plotly JSON data for line chart
+        var fig_line = JSON.parse('{{ fig_line | safe }}');
+        Plotly.newPlot('line_chart', fig_line.data, fig_line.layout);
+    </script>
+</body>
+</html>

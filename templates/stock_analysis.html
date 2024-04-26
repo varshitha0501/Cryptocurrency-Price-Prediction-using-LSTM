@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .chart-container {
+            margin-bottom: 40px;
+        }
+
+        .chart-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chart {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Analysis for Year 2019</h1>
+
+        <div class="chart-container">
+            <h2 class="chart-title">Monthly Averages</h2>
+            <div id="bar_chart" class="chart"></div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="chart-title">Monthly High and Low Prices</h2>
+            <div id="high_low_chart" class="chart"></div>
+        </div>
+
+        <div class="chart-container">
+            <h2 class="chart-title">Open, Close, High, and Low Prices</h2>
+            <div id="line_chart" class="chart"></div>
+        </div>
+    </div>
+
+    <script>
+        // Render Plotly bar chart for monthly averages
+        var fig_bar = {{ fig_bar | tojson }};
+        Plotly.newPlot('bar_chart', fig_bar.data, fig_bar.layout);
+
+        // Render Plotly bar chart for monthly high and low prices
+        var fig_high_low = {{ fig_high_low | tojson }};
+        Plotly.newPlot('high_low_chart', fig_high_low.data, fig_high_low.layout);
+
+        // Render Plotly line chart for open, close, high, and low prices
+        var fig_line = {{ fig_line | tojson }};
+        Plotly.newPlot('line_chart', fig_line.data, fig_line.layout);
+    </script>
+</body>
+</html>

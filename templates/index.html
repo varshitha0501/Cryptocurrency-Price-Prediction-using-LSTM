@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- For interactivity -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .graph-container {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 1000px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .plot-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="button-container">
+    <a href="/stock_analysis"><button>Stock Analysis 2019</button></a>
+    <a href="/stock_analysis_2020"><button>Stock Analysis 2020</button></a>
+    <a href="/stock_analysis_2021"><button>Stock Analysis 2021</button></a>
+    <a href="/stock_analysis_2022"><button>Stock Analysis 2022</button></a>
+    <a href="/stock_analysis_2023"><button>Stock Analysis 2023</button></a>
+    <a href="/stock_analysis_2024"><button>Stock Analysis 2024</button></a>
+</div>
+<h1>Stock Price Prediction</h1>
+<div class="graph-container">
+    <h2>Combined Comparison of Last 15 Days vs Next 30 Days</h2>
+    <div class="plot-container" id="combined_plot">{{ plot_div_combined | safe }}</div>
+</div>
+
+<div class="graph-container">
+    <div class="plot-container" id="closing_plot"></div>
+</div>
+<script>
+    // Data passed from Flask
+    var lstmdf = {{ lstmdf | tojson | safe }};
+    // Generate Plotly graph for closing stock price with prediction
+    var fig = {
+        data: [{
+            x: Array.from({ length: lstmdf.length }, (_, i) => i),
+            y: lstmdf,
+            mode: 'lines',
+            name: 'Close price'
+        }],
+        layout: {
+            title: 'Plotting whole closing stock price with prediction',
+            plot_bgcolor: 'white',
+            font: { size: 15, color: 'black' },
+            legend: { title: 'Stock' },
+            xaxis: { showgrid: false },
+            yaxis: { showgrid: false }
+        }
+    };
+    // Render Plotly graph for closing stock price with prediction
+    Plotly.newPlot('closing_plot', fig.data, fig.layout);
+</script>
+</body>
+</html>
